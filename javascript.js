@@ -32,10 +32,15 @@ function boxRow(num) {
     box.classList.add("box");
     box.style.width = `${boxSize}px`;
     box.style.height = `${boxSize}px`;
+    box.style.opacity = 0.1;
     container.appendChild(box);
     
     box.addEventListener("mouseenter", function(e) {
       e.target.style.backgroundColor = randomColor();
+      let currentOpacity = parseFloat(e.target.style.opacity);      //can add || 0.1 as a fallback if inline or CSS opacity not added
+      if (currentOpacity < 1){
+        e.target.style.opacity = (currentOpacity + 0.1).toFixed(2);    //.toFixed not required but to prevent the JS weird decimal result
+      }
     });
 };
 };
