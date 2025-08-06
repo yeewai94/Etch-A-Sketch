@@ -1,11 +1,3 @@
-// const container = document.querySelector("#container");
-
-// for (let i = 0 ; i < 256 ; i++){
-// const div = document.createElement("div");
-// div.classList.add("square");
-// container.appendChild(div);
-// };
-
 const body = document.querySelector("body");
 
 const button = document.createElement("button");
@@ -14,6 +6,13 @@ button.innerText = "Click Me to Input Your Desired Number!"
 body.appendChild(button);
 
 const btn = document.querySelector(".btn");
+
+function randomColor(){
+    let red = Math.floor(Math.random() * 256);
+    let green = Math.floor(Math.random() * 256);
+    let blue = Math.floor(Math.random() * 256);
+    return `rgb(${red},${green},${blue})`; 
+};
 
 function boxRow(num) {
   const oldContainer = document.querySelector(".container");
@@ -25,7 +24,7 @@ function boxRow(num) {
   body.appendChild(container);
 
 
-  let totalGap = num - 1
+  let totalGap = num - 1 
   let boxSize = (960 - totalGap) / num;
   
   for (let i = 0; i < num * num; i++) {
@@ -36,16 +35,12 @@ function boxRow(num) {
     container.appendChild(box);
     
     box.addEventListener("mouseenter", function(e) {
-      e.target.style.backgroundColor = "black";
+      e.target.style.backgroundColor = randomColor();
     });
 };
 };
 
 boxRow(16);
-
-  //box.addEventListener("mouseleave", function(e) {
-  //e.target.style.backgroundColor = "";
-  //});  
 
 btn.addEventListener("click", function() {
   let input = prompt("Please input the number of squares per side for the new grid (not more than 100)");
