@@ -36,12 +36,20 @@ function boxRow(num) {
     container.appendChild(box);
     
     box.addEventListener("mouseenter", function(e) {
+      if (e.target.style.backgroundColor == "black") return;
       e.target.style.backgroundColor = randomColor();
       let currentOpacity = parseFloat(e.target.style.opacity);      //can add || 0.1 as a fallback if inline or CSS opacity not added
       if (currentOpacity < 1){
         e.target.style.opacity = (currentOpacity + 0.1).toFixed(2);    //.toFixed not required but to prevent the JS weird decimal result
       }
     });
+
+    box.addEventListener("mouseleave", function(e){
+        let currentOpacity = parseFloat(e.target.style.opacity);
+        if (currentOpacity >= 1){
+            e.target.style.backgroundColor = "black";
+        }
+    })
 };
 };
 
